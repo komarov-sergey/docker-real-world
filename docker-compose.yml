@@ -7,11 +7,11 @@ services:
     ports:
       - "3000:3000"
     restart: unless-stopped
-    command: npm run start
-    stdin_open: true
-    tty: true
-    volumes:
-      - ./frontend/src:/usr/src/app/src
+    command: serve -s build -l 3000
+    # stdin_open: true
+    # tty: true
+    # volumes:
+    #   - ./frontend/src:/usr/src/app/src
 
   api:
     build: ./api
@@ -38,6 +38,8 @@ services:
       - PORT=3002
       - HOST=http://realworld.com
       - MONGO_URL=mongodb://auth_db:27017/auth
+    depends_on:
+      - auth_db
 
   api_db:
     image: mongo:latest
