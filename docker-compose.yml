@@ -4,14 +4,10 @@ services:
   frontend:
     build: ./frontend
     container_name: real-world-docker-frontend
-    ports:
-      - "3000:3000"
+    # ports:
+    #   - "3000:3000"
     restart: unless-stopped
     command: serve -s build -l 3000
-    # stdin_open: true
-    # tty: true
-    # volumes:
-    #   - ./frontend/src:/usr/src/app/src
 
   api:
     build: ./api
@@ -40,6 +36,16 @@ services:
       - MONGO_URL=mongodb://auth_db:27017/auth
     depends_on:
       - auth_db
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: real-world-docker-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      - frontend
 
   api_db:
     image: mongo:latest

@@ -10,3 +10,6 @@ commands:
 - docker inspect 'name of volume'
 - docker ps
 - docker logs real-world-docker-frontend
+- docker exec -it real-world-docker-api sh
+
+- ps aux | grep nginx

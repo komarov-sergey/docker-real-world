@@ -1,0 +1,9 @@
+server {
+  listen 80;
+
+  server_name real-world-docker.com;
+
+  location / {
+    proxy_pass http://frontend:3000;
+  }
+}
