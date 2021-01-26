@@ -5,7 +5,6 @@ import "./App.css";
 
 function App() {
   const makeApiRequest = () => {
-    console.log({ makeApiRequest });
     axios("/api/testwithcurrentuser").then((response) => {
       console.log({ response });
     });

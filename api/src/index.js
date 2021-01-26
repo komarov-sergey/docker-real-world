@@ -22,14 +22,15 @@ app.get("/testapidata", (req, res) => {
 });
 
 app.get("/testwithcurrentuser", (req, res) => {
-  axios.get(authApiUrl + "/currentUser").then((response) => {
-    res
-      .json({
+  axios
+    .get(authApiUrl + "/currentUser")
+    .then((response) => {
+      res.json({
         testwithcurrentuser: true,
         currentUserFromAuth: response.data,
-      })
-      .catch((e) => console.log(e.toString()));
-  });
+      });
+    })
+    .catch((e) => console.log(e.toString()));
 });
 
 const startServer = () => {
